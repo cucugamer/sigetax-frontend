@@ -27,7 +27,7 @@ export default function Dashboard() {
 
     const buscarTaxis = async () => {
       try {
-        const res = await axios.get('http://localhost:3000/api/v1/taxistas/cercanos?lat=19.2433&lng=-103.7250&radio=5', {
+        const res = await axios.get('https://sigetax-backend.onrender.com/api/v1/taxistas/cercanos?lat=19.2433&lng=-103.7250&radio=5', {
           headers: { Authorization: `Bearer ${token}` }
         });
         setTaxisCercanos(res.data.data);
@@ -41,7 +41,7 @@ export default function Dashboard() {
     if (viaje && !calificado) {
       interval = setInterval(async () => {
         try {
-          const res = await axios.get(`http://localhost:3000/api/v1/viajes/${viaje.id_viaje}/estado`, {
+          const res = await axios.get(`https://sigetax-backend.onrender.com/api/v1/viajes/${viaje.id_viaje}/estado`, {
             headers: { Authorization: `Bearer ${token}` }
           });
           if (res.data.data) {
@@ -56,7 +56,7 @@ export default function Dashboard() {
   const handleSolicitarViaje = async () => {
     setCargando(true);
     try {
-      const response = await axios.post('http://localhost:3000/api/v1/viajes/solicitar', {
+      const response = await axios.post('https://sigetax-backend.onrender.com/api/v1/viajes/solicitar', {
         origen: { lat: 19.2433, lng: -103.7250 },
         destino: { lat: 19.2644, lng: -103.7372 }
       }, { headers: { Authorization: `Bearer ${token}` } });
@@ -69,7 +69,7 @@ export default function Dashboard() {
   const handlePanico = async () => {
     if (!viaje) return;
     try {
-      await axios.post('http://localhost:3000/api/v1/seguridad/panico', {
+      await axios.post('https://sigetax-backend.onrender.com/api/v1/seguridad/panico', {
         id_viaje: viaje.id_viaje, lat: 19.2433, lng: -103.7250
       }, { headers: { Authorization: `Bearer ${token}` } });
       setAlertaEnviada(true);
@@ -80,7 +80,7 @@ export default function Dashboard() {
   const handleCalificar = async () => {
     if (estrellas === 0) return alert('Por favor, selecciona una calificación.');
     try {
-      await axios.post('http://localhost:3000/api/v1/evaluaciones', {
+      await axios.post('https://sigetax-backend.onrender.com/api/v1/evaluaciones', {
         id_viaje: viaje.id_viaje,
         calificacion: estrellas,
         comentario: comentario

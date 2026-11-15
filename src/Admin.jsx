@@ -22,8 +22,8 @@ export default function Admin() {
       try {
         const headers = { Authorization: `Bearer ${token}` };
         const [resAlertas, resTaxistas] = await Promise.all([
-          axios.get('http://localhost:3000/api/v1/admin/alertas', { headers }),
-          axios.get('http://localhost:3000/api/v1/admin/taxistas', { headers })
+          axios.get('https://sigetax-backend.onrender.com/api/v1/admin/alertas', { headers }),
+          axios.get('https://sigetax-backend.onrender.com/api/v1/admin/taxistas', { headers })
         ]);
         setAlertas(resAlertas.data.data);
         setTaxistas(resTaxistas.data.data);

@@ -24,7 +24,7 @@ export default function Taxista() {
 
     const buscarViaje = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/v1/viajes/pendiente', {
+        const response = await axios.get('https://sigetax-backend.onrender.com/api/v1/viajes/pendiente', {
           headers: { Authorization: `Bearer ${token}` }
         });
         setViaje(response.data.data);
@@ -40,7 +40,7 @@ export default function Taxista() {
   const handleAceptarViaje = async () => {
     if (!viaje) return;
     try {
-      await axios.put(`http://localhost:3000/api/v1/viajes/${viaje.id_viaje}/aceptar`, {}, {
+      await axios.put(`https://sigetax-backend.onrender.com/api/v1/viajes/${viaje.id_viaje}/aceptar`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setMensaje('¡Viaje aceptado! Dirígete al origen.');
@@ -59,7 +59,7 @@ export default function Taxista() {
       const latSimulada = 19.2433 + (Math.random() * 0.005);
       const lngSimulada = -103.7250 + (Math.random() * 0.005);
 
-      await axios.post('http://localhost:3000/api/v1/telemetria/ubicacion', {
+      await axios.post('https://sigetax-backend.onrender.com/api/v1/telemetria/ubicacion', {
         lat: latSimulada,
         lng: lngSimulada
       }, {

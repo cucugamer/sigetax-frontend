@@ -13,7 +13,7 @@ export default function RastreoPublico() {
     const consultarRastreo = async () => {
       try {
         // Petición pública (sin Token JWT)
-        const response = await axios.get(`http://localhost:3000/api/v1/seguridad/rastreo/${token}`);
+        const response = await axios.get(`https://sigetax-backend.onrender.com/api/v1/seguridad/rastreo/${token}`);
         setViaje(response.data.data);
       } catch (err) {
         setError('Enlace de rastreo inválido o expirado.');

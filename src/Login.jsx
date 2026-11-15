@@ -11,7 +11,7 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/api/v1/auth/login', {
+      const response = await axios.post('https://sigetax-backend.onrender.com/api/v1/auth/login', {
         correo_electronico: correo,
         password: password
       });
